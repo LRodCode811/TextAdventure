@@ -14,10 +14,7 @@ namespace TextAdventure
             string transportation = Console.ReadLine();
 
             Console.WriteLine("When do you plan to go on your trip?");
-            string timeOfYear = Console.ReadLine();
-
-            Console.WriteLine("Are you planning on inviting friends with you? " + "A few couples may be fun, they said..!");
-            string funRetreat = Console.ReadLine();
+            string timeOfYear = Console.ReadLine();          
 
             Console.WriteLine("What type of excursions do you like?");
             string funInTheSun = Console.ReadLine();
@@ -38,38 +35,55 @@ namespace TextAdventure
             string costBeforeTax = Console.ReadLine();
 
             Console.WriteLine($"Once you know {destination} is the place, it's recommended to do some research before you get there.");
+            
             Console.WriteLine($"Whether a {transportation} or otherwise, you may want to consider a bundled package with a travel site to save money.");
+            
             Console.WriteLine($"Traveling during {timeOfYear} is quite the experience!");
+            
             Console.WriteLine
             ($"Look up what's available to do in {destination}, see if {funInTheSun} is an option, then find out if there are some deals during {timeOfYear}.");
+            
             Console.WriteLine
-            ($"Make sure there are {somethingForTheSoul} restaurants close to the area you'll be staying while in {destination}, " +
+            ($"Make sure there are {somethingForTheSoul} restaurants close to the area you'll be staying in {destination}, " +
             $"otherwise, be prepared for different options.");
+            
             Console.WriteLine
             ($"Be sure to bring your bathing suit and some tanning lotion to truly enjoy the {swimForFun}.");
+            
             Console.WriteLine($"Remember a bundled package for your {accommodations} may be kind to your wallet.");
-            Console.WriteLine($"{budgetTracker} is a good cushion to work with.");
+            
+            Console.WriteLine($"{budgetTracker} is a really good amount to work with.");
+            
             Console.WriteLine
-            ($"Be sure to check how much the taxes will be and add that to the {costBeforeTax}, to determine if you need to save more before your trip.");
+            ($"Be sure to check how much the taxes will be to determine if you need to save more money before your trip.");
 
             Console.WriteLine("SubTotal before taxes.");
-            int subTotal = int.Parse(Console.ReadLine());
+            double subTotal = double.Parse(Console.ReadLine());
 
             Console.WriteLine("Taxes to add");
-            int taxes = int.Parse(Console.ReadLine());
+            double taxes = double.Parse(Console.ReadLine());
 
-            int total = (subTotal + taxes);
+            double total = (subTotal + taxes);
             Console.WriteLine($"The total after taxes: {total}.");
 
-            Console.WriteLine("Number of people going on the trip.");
-            int travelers = int.Parse(Console.ReadLine());
+            TravelDollars neededRetreat = new TravelDollars();
+            Console.WriteLine("Trip total");
 
-            int multiplication = Multiply(total, travelers);
-            Console.WriteLine($"The total amount for all parties: {multiplication}");
+            var budgetToWorkWith = double.Parse(Console.ReadLine());
+            neededRetreat.TransactionTotal(budgetToWorkWith);
+            Console.WriteLine($"Congrats! Enjoy your trip! Here's your final total: {neededRetreat.TripTotal()}");
+
+            Console.WriteLine("If you decided to invite your close friends, how many people in total (including you would go on the trip?");
+            double travelers = double.Parse(Console.ReadLine());
+
+            double multiplication = Multiply(total, travelers);
+            Console.WriteLine($"If you and your close friends went on the trip, this would be the total amount for the group: {multiplication}");
+
+            static double Multiply(double total, double travelers)
+            {
+                return total * travelers;
+            }
+
         }
-        public static int Multiply(int total, int travelers)
-        {
-            return total * travelers;
-        }
-    }
+    }  
 }
